@@ -5,6 +5,6 @@ Here is the github link of the project
 
 ## https://github.com/junaifcp/addProduct
 
-clone this project and install all the dependenciesadd this to .env file : 
+clone this project and install all the dependencies and add this to .env file : 
 
 ### MONGO=mongodb+srv://junaifcp123:junaifcp123@cluster0.oizp3.mongodb.net/mySpace?retryWrites=true&w=majority
