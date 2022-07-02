@@ -7,4 +7,4 @@ Here is the github link of the project
 
 clone this project and install all the dependenciesadd this to .env file : 
 
-##MONGO=mongodb+srv://junaifcp123:junaifcp123@cluster0.oizp3.mongodb.net/mySpace?authSource=admin&replicaSet=atlas-me8otp-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true
+## MONGO=mongodb+srv://junaifcp123:junaifcp123@cluster0.oizp3.mongodb.net/mySpace?authSource=admin&replicaSet=atlas-me8otp-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true
