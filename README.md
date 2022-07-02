@@ -7,4 +7,4 @@ Here is the github link of the project
 
 clone this project and install all the dependenciesadd this to .env file : 
 
-### mongodb+srv://junaifcp123:junaifcp123@cluster0.oizp3.mongodb.net/?retryWrites=true&w=majority
+### MONGO=mongodb+srv://junaifcp123:junaifcp123@cluster0.oizp3.mongodb.net/mySpace?retryWrites=true&w=majority
