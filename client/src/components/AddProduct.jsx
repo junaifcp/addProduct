@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import FileBase from 'react-file-base64'
 import {
   Typography,
   Avatar,
@@ -17,11 +18,12 @@ function AddProduct() {
   const [addProduct, setAddProduct] = useState({
     name: "",
     desc: "",
-    price:""
+    price:"",
   });
 //   const [newRecord, setNewRecord] = useState([]);
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [formErrors,setFormErrors] = useState({});
+  const [isSubmit,setIsSubmit] = useState(false);
+  const [images,setImages]=useState('')
   // const navigate=useNavigate()
   const paperStyle = {
     padding: "20px",
@@ -44,15 +46,19 @@ function AddProduct() {
     setFormErrors(validate(addProduct));
     setIsSubmit(true);
 
-    //  axios.get('http://localhost:5000/posts').then((res)=>{
-    //   console.log(res);
-    //  })
+  
   };
   useEffect(() => {
     console.log(formErrors);
     if (Object.keys(formErrors).length === 0 && isSubmit) {
+      var formData = new FormData();
+
+      formData.append('name',addProduct.name)
+      formData.append('desc',addProduct.desc)
+      formData.append('price',addProduct.price)
+      formData.append('photo',images)
       axios
-        .post("http://localhost:5001/api/posts", addProduct)
+        .post("http://localhost:5001/api/posts",formData)
         .then((res) => {
           console.log(res.data);
           // localStorage.setItem("token",JSON.stringify(res.data))
@@ -83,6 +89,9 @@ function AddProduct() {
     const value = e.target.value;
     setAddProduct({ ...addProduct, [name]: value });
   };
+  const onImageChange=(e)=>{
+  setImages(e.target.files[0])
+  }
   return (
     <>
       <Grid>
@@ -94,7 +103,7 @@ function AddProduct() {
             <Typography variant="h5">Add product</Typography>
           </Grid>
           <Grid style={input}>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} enctype="multipart/form-data">
               <TextField
                 name="name"
                 value={addProduct.name}
@@ -137,13 +146,19 @@ function AddProduct() {
               <br/>
               <Typography>Upload images</Typography>
               <input
+                filename='photo'
                 accept="image/*"
                 // className={classes.input}
                 // style={inputStyle}
                 id="raised-button-file"
-                multiple
                 type="file"
+                onChange={onImageChange}
               />
+              {/* <FileBase
+              type="file"
+              multiple="false"
+              onDone={({base64})=>setAddProduct({...addProduct,photo:base64})}
+              /> */}
 
               <Button
                 style={buttonStyle}

@@ -1,11 +1,20 @@
-import express from 'express';
-import dotenv from 'dotenv'
-import mongoose from 'mongoose';
-import methodOverride from 'method-override'
-import postsRouter from './routes/posts.js';
-import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
-import cors from 'cors';
+const express=require('express')
+const dotenv=require('dotenv')
+const mongoose=require('mongoose')
+const methodOverride=require('method-override')
+const postsRouter=require('./routes/posts.js')
+const bodyParser=require('body-parser')
+const cookieParser=require('cookie-parser')
+const fs=require('fs')
+const cors=require('cors')
+// import dotenv from 'dotenv'
+// import mongoose from 'mongoose';
+// import methodOverride from 'method-override'
+// import postsRouter from './routes/posts.js';
+// import bodyParser from 'body-parser';
+// import cookieParser from 'cookie-parser';
+// import cors from 'cors';
+
 const app =express()
 dotenv.config()
 app.use(cors())
@@ -20,6 +29,8 @@ const connect=async ()=>{
 mongoose.connection.on("disconnected",()=>{
     console.log("mongodb disconnected");
 })
+
+app.use(express.static('./uploads'))
 //middlewares
 app.use(cookieParser())
 app.use(express.json())

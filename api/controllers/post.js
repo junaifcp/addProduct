@@ -1,24 +1,27 @@
-import Post from "../models/post.js"
+// import Post from "../models/post.js"
+const Post=require('../models/post')
+const fs=require('fs')
 
-export const createPost=async(req,res,next)=>{
-  console.log(req.file);
-  console.log(req.body);
+exports.createPost=async(req,res,next)=>{
   let price=parseInt(req.body.price)
   let percent=price*1/10
   let updatedPrice=percent+price;
-    const newPost=new Post({
-      name:req.body.name,
-      desc:req.body.desc,
-      price:updatedPrice,
-    })
+    
     try {
+      const newPost=new Post({
+        name:req.body.name,
+        desc:req.body.desc,
+        price:updatedPrice,
+        photo:req.file.filename
+       
+      })
       const savedPost=await newPost.save()
       res.status(200).json(savedPost)
     } catch (error) {
       next(error)
     }
 }
-export const updatePost=async(req,res,next)=>{
+exports.updatePost=async(req,res,next)=>{
     
     try {
         const updatePost=await Post.findByIdAndUpdate(req.params.id,{    
@@ -29,7 +32,7 @@ export const updatePost=async(req,res,next)=>{
         next(error)
       }
 }
-export const deletePost=async(req,res,next)=>{
+exports.deletePost=async(req,res,next)=>{
     try {
         await Post.findByIdAndDelete(req.params.id)
         res.status(200).json("Hotel has been deleted")
@@ -37,7 +40,7 @@ export const deletePost=async(req,res,next)=>{
         next(error)
       }
 }
-export const getPost=async(req,res,next)=>{
+exports.getPost=async(req,res,next)=>{
     try {
         const post=await Post.findById(req.params.id)
         res.status(200).json(post)
@@ -45,7 +48,7 @@ export const getPost=async(req,res,next)=>{
         next(error)
       }
 }
-export const getAllPost=async(req,res,next)=>{
+exports.getAllPost=async(req,res,next)=>{
     try {
         const posts=await Post.find()
         res.status(200).json(posts)

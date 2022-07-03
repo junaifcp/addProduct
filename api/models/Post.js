@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
+const mongoose=require('mongoose')
 const PostSchema=new mongoose.Schema({
     name:{
         type:String,
@@ -13,11 +14,11 @@ const PostSchema=new mongoose.Schema({
         required:true
     },
     photo:{
-        type:Array,
-        default:[]
+     type:String
     },
     id:{
-        type:String
+        type:String,
     }
 },{timestamps:true})
-export default mongoose.model("Post",PostSchema)
+module.exports=mongoose.model("Post",PostSchema);
+// export default mongoose.model("Post",PostSchema)

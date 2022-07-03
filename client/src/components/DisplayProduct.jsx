@@ -27,11 +27,11 @@ function DisplayProduct() {
   return (
     <>
     {loading?("Loading please wait"):(<>
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 345,margin:'50px auto'}}>
       <CardMedia
         component="img"
         height="140"
-        image="https://imgs.search.brave.com/1tl38HhZFq-RRFDyKB9wRVEc-Z_kteC2X01aVPdwjvk/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9zb2Np/YWxtZWRpYWV4cGxv/cmVyLmNvbS93cC1j/b250ZW50L3VwbG9h/ZHMvMjAxNy8wMy9j/cmVhdGluZy1hLW1v/YmlsZS1hcHAtc3F1/YXJlLmpwZw"
+        image={`http://localhost:5001/${data.photo}`}
         alt="green iguana"
       />
       <CardContent>
